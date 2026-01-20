@@ -107,30 +107,30 @@ const BookingForm = () => {
 
   if (isSuccess) {
     return (
-      <section id="booking" className="py-20 md:py-28 bg-accent/30">
-        <div className="container mx-auto px-4">
+      <section id="booking" className="py-12 xs:py-16 md:py-20 lg:py-28 bg-accent/30">
+        <div className="container mx-auto px-3 xs:px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="max-w-xl mx-auto text-center bg-card rounded-3xl p-8 md:p-12 shadow-card border border-border"
+            className="max-w-xl mx-auto text-center bg-card rounded-2xl xs:rounded-3xl p-5 xs:p-8 md:p-12 shadow-card border border-border"
           >
-            <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-emerald-600" />
+            <div className="w-14 h-14 xs:w-16 xs:h-16 md:w-20 md:h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 xs:mb-6">
+              <CheckCircle className="w-7 h-7 xs:w-8 xs:h-8 md:w-10 md:h-10 text-emerald-600" />
             </div>
-            <h3 className="text-2xl font-display font-bold text-foreground mb-4">
+            <h3 className="text-lg xs:text-xl md:text-2xl font-display font-bold text-foreground mb-3 xs:mb-4">
               Booking Received!
             </h3>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground mb-5 xs:mb-6 md:mb-8 text-sm xs:text-base">
               Thank you for choosing QuickServe. Our team will contact you within 30 minutes to confirm your service appointment.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 md:gap-4 justify-center">
               <a href={`tel:${PHONE_NUMBERS.primary}`}>
-                <Button variant="outline" className="gap-2 w-full sm:w-auto">
-                  <Phone className="w-4 h-4" />
-                  Call Now: {PHONE_NUMBERS.primary}
+                <Button variant="outline" className="gap-2 w-full xs:w-auto h-9 xs:h-10 text-xs xs:text-sm">
+                  <Phone className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
+                  Call: {PHONE_NUMBERS.primary}
                 </Button>
               </a>
-              <Button onClick={() => setIsSuccess(false)} className="gap-2">
+              <Button onClick={() => setIsSuccess(false)} className="gap-2 h-9 xs:h-10 text-xs xs:text-sm">
                 Submit Another Request
               </Button>
             </div>
@@ -141,8 +141,8 @@ const BookingForm = () => {
   }
 
   return (
-    <section id="booking" className="py-20 md:py-28 bg-accent/30">
-      <div className="container mx-auto px-4">
+    <section id="booking" className="py-12 xs:py-16 md:py-20 lg:py-28 bg-accent/30">
+      <div className="container mx-auto px-3 xs:px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Form Info */}
           <motion.div
