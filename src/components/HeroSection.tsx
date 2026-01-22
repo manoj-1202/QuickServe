@@ -34,7 +34,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-accent rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-accent rounded-full mt-1"
             >
               <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-xs xs:text-sm font-medium text-accent-foreground">
@@ -43,7 +43,7 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Headline */}
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-4xl font-bold text-foreground leading-tight mb-6">
               {BUSINESS.name} –{" "}
               <span className="text-primary">Fast & Reliable</span>{" "}
               Electronic Services

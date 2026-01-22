@@ -99,21 +99,21 @@ const Header = () => {
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => {
-                  setActiveLink(link.href)
-                  setIsMenuOpen(false)
-                }}
-                className={`text-base font-medium transition-colors py-2 ${
-                  activeLink === link.href
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
-                }`}
-              >
-                {link.label}
-              </a>
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => {
+                setActiveLink(link.href)
+                setIsMenuOpen(false)
+              }}
+              className={`text-base font-medium transition-colors py-2 ${
+                activeLink === link.href
+                  ? "text-primary"
+                  : "text-foreground hover:text-primary"
+              }`}
+            >
+              {link.label}
+            </a>
               ))}
               <a href={`tel:${PHONE_NUMBERS.primary}`} className="mt-2">
                 <Button variant="default" className="w-full gap-2">
