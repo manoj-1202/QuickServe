@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, ArrowRight, CheckCircle } from "lucide-react";
 import { BUSINESS, PHONE_NUMBERS, WHATSAPP_LINKS } from "@/lib/constants";
+import home from "../assest/home.jpg"
 
 const HeroSection = () => {
   const features = [
@@ -13,7 +14,11 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[100svh] flex items-center pt-16 xs:pt-20 md:pt-0 overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent via-background to-background" />
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${home})` }}
+    />
+
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
       
       {/* Decorative Elements - Hidden on very small screens */}
@@ -34,7 +39,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-accent rounded-full mt-1"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-accent rounded-full mt-6"
             >
               <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-xs xs:text-sm font-medium text-accent-foreground">
@@ -43,15 +48,15 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Headline */}
-            <h1 className="font-display text-4xl md:text-5xl lg:text-4xl font-bold text-foreground leading-tight mb-6">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-4xl font-bold text-white leading-tight mb-6">
               {BUSINESS.name} –{" "}
               <span className="text-primary">Fast & Reliable</span>{" "}
               Electronic Services
             </h1>
 
             {/* Subtext */}
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-muted-foreground mb-5 xs:mb-8 max-w-xl mx-auto lg:mx-0">
-              One call connects you to trusted AC, TV, electrician, CCTV, and mobile repair professionals in Coimbatore.
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-muted-foreground text-white mb-5 xs:mb-8 max-w-xl mx-auto lg:mx-0">
+              One Call Connects you to Trusted AC, Washing Machine, Fridge, TV, Electrician, CCTV, and Mobile repair Professionals in Coimbatore.
             </p>
 
             {/* Features - Scrollable on mobile */}
@@ -62,7 +67,7 @@ const HeroSection = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-1 xs:gap-2 text-xs xs:text-sm text-muted-foreground"
+                  className="flex items-center gap-1 xs:gap-2 text-xs xs:text-sm text-white"
                 >
                   <CheckCircle className="w-3 h-3 xs:w-4 xs:h-4 text-primary flex-shrink-0" />
                   <span className="whitespace-nowrap">{feature}</span>
@@ -99,7 +104,7 @@ const HeroSection = () => {
             </div>
 
             {/* Secondary Phone */}
-            <p className="mt-4 xs:mt-6 text-xs xs:text-sm text-muted-foreground">
+            <p className="mt-4 xs:mt-6 text-xs xs:text-sm text-white">
               Or call:{" "}
               <a href={`tel:${PHONE_NUMBERS.secondary}`} className="text-primary hover:underline font-medium">
                 {PHONE_NUMBERS.secondary}

@@ -24,6 +24,18 @@ export const SERVICES = [
     description: "Expert AC installation, servicing, gas refilling, and repair for all brands including split, window, and central AC systems.",
     icon: "Snowflake",
   },
+    {
+    id: "washing-machine-service",
+    name: "Washing Machine Service & Repair",
+    description: "Professional washing machine installation, servicing, and repair for all brands including top-load, front-load, and fully automatic models.",
+    icon: "WashingMachine",
+  },
+  {
+    id: "fridge-service",
+    name: "Fridge Service & Repair",
+    description: "Expert refrigerator installation, servicing, and repair for all brands including single-door, double-door, and side-by-side models.",
+    icon: "Refrigerator",
+  },
   {
     id: "tv-repair",
     name: "TV Repair",

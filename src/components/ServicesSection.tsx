@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Snowflake, Tv, Zap, Camera, Smartphone, Settings, ArrowRight } from "lucide-react";
+import { Snowflake, Tv, Zap, Camera, Smartphone, Settings, ArrowRight,  WashingMachine,Refrigerator } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 
@@ -10,6 +10,8 @@ const iconMap = {
   Camera,
   Smartphone,
   Settings,
+  WashingMachine,
+  Refrigerator
 };
 
 const ServicesSection = () => {

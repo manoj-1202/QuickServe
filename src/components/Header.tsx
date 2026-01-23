@@ -98,13 +98,28 @@ const Header = () => {
             className="md:hidden bg-background border-t border-border"
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
+
                 setActiveLink(link.href)
                 setIsMenuOpen(false)
+
+                setTimeout(() => {
+                  const section = document.querySelector(link.href)
+                  if (section) {
+                    const yOffset = -100
+                    const y =
+                      section.getBoundingClientRect().top +
+                      window.pageYOffset +
+                      yOffset
+
+                    window.scrollTo({ top: y, behavior: "smooth" })
+                  }
+                }, 300) // wait for menu animation
               }}
               className={`text-base font-medium transition-colors py-2 ${
                 activeLink === link.href
@@ -114,7 +129,7 @@ const Header = () => {
             >
               {link.label}
             </a>
-              ))}
+          ))}
               <a href={`tel:${PHONE_NUMBERS.primary}`} className="mt-2">
                 <Button variant="default" className="w-full gap-2">
                   <Phone className="w-4 h-4" />
@@ -130,3 +145,4 @@ const Header = () => {
 };
 
 export default Header;
+
