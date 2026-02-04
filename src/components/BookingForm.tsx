@@ -78,7 +78,6 @@ const BookingForm = () => {
         throw error;
       }
 
-<<<<<<< HEAD
       // nodemailer
           await fetch("http://localhost:5000/send-booking-email", {
       method: "POST",
@@ -96,7 +95,7 @@ const BookingForm = () => {
       }),
     });
 
-=======
+
       // Send email notification to admin
       try {
         await supabase.functions.invoke("send-booking-notification", {
@@ -115,7 +114,7 @@ const BookingForm = () => {
         console.error("Failed to send email notification:", emailError);
         // Don't fail the booking if email fails
       }
->>>>>>> 6a1d692ec6bd9da85f877084b8ed417a49d3f1da
+
 
       setIsSuccess(true);
       toast({
