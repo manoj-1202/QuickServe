@@ -78,6 +78,7 @@ const BookingForm = () => {
         throw error;
       }
 
+<<<<<<< HEAD
       // nodemailer
           await fetch("http://localhost:5000/send-booking-email", {
       method: "POST",
@@ -95,6 +96,26 @@ const BookingForm = () => {
       }),
     });
 
+=======
+      // Send email notification to admin
+      try {
+        await supabase.functions.invoke("send-booking-notification", {
+          body: {
+            adminEmail: "manojpolevault1202@gmail.com",
+            customerName: formData.customerName.trim(),
+            phoneNumber: formData.phoneNumber.trim(),
+            location: formData.location.trim(),
+            service: formData.service,
+            problemDescription: formData.problemDescription?.trim(),
+            preferredDate: formData.preferredDate,
+            preferredTime: formData.preferredTime,
+          },
+        });
+      } catch (emailError) {
+        console.error("Failed to send email notification:", emailError);
+        // Don't fail the booking if email fails
+      }
+>>>>>>> 6a1d692ec6bd9da85f877084b8ed417a49d3f1da
 
       setIsSuccess(true);
       toast({
