@@ -47,7 +47,7 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Headline */}
-            <h1 className="font-display text-4xl md:text-5xl lg:text-4xl font-bold text-white leading-tight mb-6">
+            <h1 className="font-display text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 xs:mb-6 drop-shadow-lg">
               {BUSINESS.name} –{" "}
               <span className="text-primary">Fast & Reliable</span>{" "}
               Electronic Services
