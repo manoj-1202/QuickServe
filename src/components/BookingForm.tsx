@@ -96,11 +96,10 @@ const BookingForm = () => {
     });
 
 
-      // Send email notification to admin
+      // Send email notification to admin (email is configured server-side)
       try {
         await supabase.functions.invoke("send-booking-notification", {
           body: {
-            adminEmail: "manojpolevault1202@gmail.com",
             customerName: formData.customerName.trim(),
             phoneNumber: formData.phoneNumber.trim(),
             location: formData.location.trim(),
@@ -111,8 +110,7 @@ const BookingForm = () => {
           },
         });
       } catch (emailError) {
-        console.error("Failed to send email notification:", emailError);
-        // Don't fail the booking if email fails
+        // Don't fail the booking if email fails - logged server-side
       }
 
 

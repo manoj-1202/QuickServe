@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") || "admin@example.com";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -9,7 +10,6 @@ const corsHeaders = {
 };
 
 interface BookingNotificationRequest {
-  adminEmail: string;
   customerName: string;
   phoneNumber: string;
   location: string;
@@ -19,14 +19,99 @@ interface BookingNotificationRequest {
   preferredTime?: string;
 }
 
+// Rate limiting using in-memory store (per function instance)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 5; // max 5 requests per minute per IP
+
+function isRateLimited(clientIp: string): boolean {
+  const now = Date.now();
+  const record = rateLimitStore.get(clientIp);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(clientIp, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return true;
+  }
+  
+  record.count++;
+  return false;
+}
+
+// HTML escape function to prevent XSS/HTML injection
+function escapeHtml(text: string): string {
+  if (!text) return "";
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
+// Input validation schema
+function validateInput(data: BookingNotificationRequest): { valid: boolean; error?: string } {
+  if (!data.customerName || typeof data.customerName !== 'string' || data.customerName.length > 100) {
+    return { valid: false, error: "Invalid customer name" };
+  }
+  if (!data.phoneNumber || !/^[6-9]\d{9}$/.test(data.phoneNumber)) {
+    return { valid: false, error: "Invalid phone number" };
+  }
+  if (!data.location || typeof data.location !== 'string' || data.location.length > 200) {
+    return { valid: false, error: "Invalid location" };
+  }
+  if (!data.service || typeof data.service !== 'string' || data.service.length > 100) {
+    return { valid: false, error: "Invalid service" };
+  }
+  if (data.problemDescription && (typeof data.problemDescription !== 'string' || data.problemDescription.length > 1000)) {
+    return { valid: false, error: "Invalid problem description" };
+  }
+  return { valid: true };
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
 
   try {
+    // Rate limiting check
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("cf-connecting-ip") || 
+                     "unknown";
+    
+    if (isRateLimited(clientIp)) {
+      console.log(`Rate limit exceeded for IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please try again later." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const requestData: BookingNotificationRequest = await req.json();
+    
+    // Validate input
+    const validation = validateInput(requestData);
+    if (!validation.valid) {
+      console.log(`Validation failed: ${validation.error}`);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const {
-      adminEmail,
       customerName,
       phoneNumber,
       location,
@@ -34,13 +119,9 @@ const handler = async (req: Request): Promise<Response> => {
       problemDescription,
       preferredDate,
       preferredTime,
-    }: BookingNotificationRequest = await req.json();
+    } = requestData;
 
-    console.log("Sending booking notification to:", adminEmail);
-
-    if (!adminEmail || !customerName || !phoneNumber || !location || !service) {
-      throw new Error("Missing required fields");
-    }
+    console.log("Sending booking notification to admin");
 
     const timeLabel = preferredTime === "morning" 
       ? "Morning (8 AM - 12 PM)" 
@@ -49,6 +130,15 @@ const handler = async (req: Request): Promise<Response> => {
         : preferredTime === "evening"
           ? "Evening (4 PM - 8 PM)"
           : "";
+
+    // Escape all user inputs to prevent HTML injection
+    const safeCustomerName = escapeHtml(customerName);
+    const safePhoneNumber = escapeHtml(phoneNumber);
+    const safeLocation = escapeHtml(location);
+    const safeService = escapeHtml(service);
+    const safeProblemDescription = problemDescription ? escapeHtml(problemDescription) : "";
+    const safePreferredDate = preferredDate ? escapeHtml(preferredDate) : "";
+    const safeTimeLabel = escapeHtml(timeLabel);
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -75,40 +165,40 @@ const handler = async (req: Request): Promise<Response> => {
           <div class="content">
             <div class="field">
               <div class="label">👤 Customer Name</div>
-              <div class="value">${customerName}</div>
+              <div class="value">${safeCustomerName}</div>
             </div>
             <div class="field">
               <div class="label">📞 Phone Number</div>
-              <div class="value"><a href="tel:${phoneNumber}">${phoneNumber}</a></div>
+              <div class="value"><a href="tel:${safePhoneNumber}">${safePhoneNumber}</a></div>
             </div>
             <div class="field">
               <div class="label">📍 Location</div>
-              <div class="value">${location}</div>
+              <div class="value">${safeLocation}</div>
             </div>
             <div class="field">
               <div class="label">🔧 Service Required</div>
-              <div class="value">${service}</div>
+              <div class="value">${safeService}</div>
             </div>
-            ${problemDescription ? `
+            ${safeProblemDescription ? `
             <div class="field">
               <div class="label">📝 Problem Description</div>
-              <div class="value">${problemDescription}</div>
+              <div class="value">${safeProblemDescription}</div>
             </div>
             ` : ""}
-            ${preferredDate ? `
+            ${safePreferredDate ? `
             <div class="field">
               <div class="label">📅 Preferred Date</div>
-              <div class="value">${preferredDate}</div>
+              <div class="value">${safePreferredDate}</div>
             </div>
             ` : ""}
-            ${timeLabel ? `
+            ${safeTimeLabel ? `
             <div class="field">
               <div class="label">⏰ Preferred Time</div>
-              <div class="value">${timeLabel}</div>
+              <div class="value">${safeTimeLabel}</div>
             </div>
             ` : ""}
-            <a href="tel:${phoneNumber}" class="cta">📞 Call Customer Now</a>
-            <a href="https://wa.me/91${phoneNumber}" class="cta" style="margin-left: 10px;">💬 WhatsApp</a>
+            <a href="tel:${safePhoneNumber}" class="cta">📞 Call Customer Now</a>
+            <a href="https://wa.me/91${safePhoneNumber}" class="cta" style="margin-left: 10px;">💬 WhatsApp</a>
           </div>
           <div class="footer">
             <p>This is an automated notification from QuickServe booking system.</p>
@@ -126,8 +216,8 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "QuickServe <onboarding@resend.dev>",
-        to: [adminEmail],
-        subject: `🔔 New Booking Request - ${service}`,
+        to: [ADMIN_EMAIL],
+        subject: `🔔 New Booking Request - ${safeService}`,
         html: emailHtml,
       }),
     });
@@ -148,7 +238,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-booking-notification function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Failed to process request" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
