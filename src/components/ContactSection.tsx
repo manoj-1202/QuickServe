@@ -10,7 +10,7 @@ const contactItemVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut" as const,
     },
   }),
 };
@@ -23,7 +23,7 @@ const ctaCardVariants = {
     transition: {
       delay: 0.3 + i * 0.15,
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut" as const,
     },
   }),
 };
