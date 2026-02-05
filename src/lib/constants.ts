@@ -13,8 +13,8 @@ export const PHONE_NUMBERS = {
 };
 
 export const WHATSAPP_LINKS = {
-  primary: `https://wa.me/91${PHONE_NUMBERS.primary}`,
-  secondary: `https://wa.me/91${PHONE_NUMBERS.secondary}`,
+  primary: `https://wa.me/91${PHONE_NUMBERS.primary}?text=${encodeURIComponent("Hi, I need help with electronic repair services.")}`,
+  secondary: `https://wa.me/91${PHONE_NUMBERS.secondary}?text=${encodeURIComponent("Hi, I need help with electronic repair services.")}`,
 };
 
 export const SERVICES = [
