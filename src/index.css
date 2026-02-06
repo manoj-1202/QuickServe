@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* QuickServe Design System - Red & White Professional Theme */
+/* QuickServee Design System - Red & White Professional Theme */
 
 @layer base {
   :root {
@@ -18,7 +18,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* Primary - QuickServe Red */
+    /* Primary - QuickServee Red */
     --primary: 0 84% 50%;
     --primary-foreground: 0 0% 100%;
 
@@ -43,7 +43,7 @@
 
     --radius: 0.75rem;
 
-    /* Custom QuickServe Tokens */
+    /* Custom QuickServee Tokens */
     --qs-red-50: 0 85% 97%;
     --qs-red-100: 0 85% 94%;
     --qs-red-200: 0 84% 88%;

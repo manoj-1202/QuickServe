@@ -40,7 +40,7 @@ const HowItWorksSection = () => {
             Simple Process
           </span>
           <h2 className="section-title text-foreground mb-3 xs:mb-4 text-2xl xs:text-3xl md:text-4xl lg:text-5xl">
-            How <span className="text-primary">QuickServe</span> Works
+            How <span className="text-primary">QuickServee</span> Works
           </h2>
           <p className="section-subtitle mx-auto text-sm xs:text-base md:text-lg">
             Get your electronics fixed in three simple steps. Fast, easy, and reliable service every time.

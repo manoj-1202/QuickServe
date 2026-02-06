@@ -139,7 +139,7 @@ const BookingForm = () => {
               Booking Received!
             </h3>
             <p className="text-muted-foreground mb-5 xs:mb-6 md:mb-8 text-sm xs:text-base">
-              Thank you for choosing QuickServe. Our team will contact you within 30 minutes to confirm your service appointment.
+              Thank you for choosing QuickServee. Our team will contact you within 30 minutes to confirm your service appointment.
             </p>
             <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 md:gap-4 justify-center">
               <a href={`tel:${PHONE_NUMBERS.primary}`}>

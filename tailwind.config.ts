@@ -73,7 +73,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // QuickServe specific colors
+        // QuickServee specific colors
         qs: {
           red: {
             50: "hsl(var(--qs-red-50))",

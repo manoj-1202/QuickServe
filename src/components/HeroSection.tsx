@@ -13,12 +13,13 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[100svh] flex items-center pt-16 xs:pt-20 md:pt-0 overflow-hidden">
-      {/* Background Image with Dark Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${home})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40" />
+      {/* Background Pattern */}
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${home})` }}
+    />
+
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
       
       {/* Decorative Elements - Hidden on very small screens */}
       <div className="hidden xs:block absolute top-1/4 right-1/4 w-32 xs:w-48 md:w-64 h-32 xs:h-48 md:h-64 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
@@ -41,20 +42,20 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 px-4 py-2 bg-accent rounded-full mt-6"
             >
               <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-xs xs:text-sm font-medium text-accent-foreground">
+              <span className="text-xs xs:text-sm lg:text-xs xl:text-xs  font-medium text-accent-foreground">
                 Serving {BUSINESS.location}
               </span>
             </motion.div>
 
             {/* Headline */}
-            <h1 className="font-display text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 xs:mb-6 drop-shadow-lg">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-4xl font-bold text-white leading-tight mb-6">
               {BUSINESS.name} –{" "}
               <span className="text-primary">Fast & Reliable</span>{" "}
               Electronic Services
             </h1>
 
             {/* Subtext */}
-            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 mb-5 xs:mb-8 max-w-xl mx-auto lg:mx-0 drop-shadow-md">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-muted-foreground text-white mb-5 xs:mb-8 max-w-xl mx-auto lg:mx-0">
               One Call Connects you to Trusted AC, Washing Machine, Fridge, TV, Electrician, CCTV, and Mobile repair Professionals in Coimbatore.
             </p>
 

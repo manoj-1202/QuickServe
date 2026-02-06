@@ -33,7 +33,7 @@ const FloatingCTAButtons = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
-            aria-label="Call QuickServe"
+            aria-label="Call QuickServee"
           >
             <Phone className="w-6 h-6 text-primary-foreground" />
           </motion.a>

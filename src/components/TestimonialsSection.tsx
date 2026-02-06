@@ -45,7 +45,7 @@ const TestimonialsSection = () => {
             Trusted by <span className="text-primary">500+ Customers</span>
           </h2>
           <p className="section-subtitle mx-auto text-sm xs:text-base md:text-lg">
-            See what our customers in Coimbatore have to say about QuickServe.
+            See what our customers in Coimbatore have to say about QuickServee.
           </p>
         </motion.div>
 

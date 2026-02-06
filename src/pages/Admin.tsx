@@ -157,7 +157,7 @@ const Admin = () => {
   };
 
   const openWhatsApp = (phone: string, name: string) => {
-    const message = encodeURIComponent(`Hi ${name}, this is QuickServe. We're reaching out regarding your service request.`);
+    const message = encodeURIComponent(`Hi ${name}, this is QuickServee. We're reaching out regarding your service request.`);
     window.open(`https://wa.me/91${phone}?text=${message}`, "_blank");
   };
 

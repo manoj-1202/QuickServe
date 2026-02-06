@@ -34,7 +34,7 @@ const ServicesSection = () => {
             <span className="text-primary">Electronic Needs</span>
           </h2>
           <p className="section-subtitle mx-auto text-sm xs:text-base md:text-lg lg:text-xl px-2">
-            From AC repairs to mobile fixes, QuickServe connects you with verified professionals for every electronic service.
+            From AC repairs to mobile fixes, QuickServee connects you with verified professionals for every electronic service.
           </p>
         </motion.div>
 

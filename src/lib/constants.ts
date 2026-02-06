@@ -1,6 +1,6 @@
-// QuickServe Business Information
+// QuickServee Business Information
 export const BUSINESS = {
-  name: "QuickServe",
+  name: "QuickServee",
   tagline: "Fast & Reliable Electronic Services in Coimbatore",
   location: "Coimbatore, Tamil Nadu",
   serviceArea: "Coimbatore & Nearby Areas",
@@ -54,12 +54,12 @@ export const SERVICES = [
     description: "Complete CCTV solutions including installation, maintenance, DVR setup, and remote viewing configuration.",
     icon: "Camera",
   },
-  {
-    id: "mobile-laptop",
-    name: "Mobile & Laptop Repair",
-    description: "Expert repair for smartphones, tablets, and laptops. Screen replacement, battery service, and data recovery.",
-    icon: "Smartphone",
-  },
+  // {
+  //   id: "mobile-laptop",
+  //   name: "Mobile & Laptop Repair",
+  //   description: "Expert repair for smartphones, tablets, and laptops. Screen replacement, battery service, and data recovery.",
+  //   icon: "Smartphone",
+  // },
   {
     id: "other",
     name: "Other Electronics",
@@ -76,7 +76,7 @@ export const TESTIMONIALS = [
     name: "Rajesh Kumar",
     location: "RS Puram, Coimbatore",
     rating: 5,
-    text: "QuickServe sent a technician within 2 hours of my call. My AC is working perfectly now. Highly recommended!",
+    text: "QuickServee sent a technician within 2 hours of my call. My AC is working perfectly now. Highly recommended!",
     service: "AC Service",
   },
   {
@@ -92,7 +92,7 @@ export const TESTIMONIALS = [
     name: "Mohammed Ali",
     location: "Peelamedu, Coimbatore",
     rating: 5,
-    text: "Fixed my TV in no time. Fair pricing and honest service. Will definitely use QuickServe again.",
+    text: "Fixed my TV in no time. Fair pricing and honest service. Will definitely use QuickServee again.",
     service: "TV Repair",
   },
   {
@@ -100,7 +100,7 @@ export const TESTIMONIALS = [
     name: "Lakshmi Devi",
     location: "Saibaba Colony, Coimbatore",
     rating: 5,
-    text: "The electrician was very skilled and completed the wiring work safely. Thank you QuickServe!",
+    text: "The electrician was very skilled and completed the wiring work safely. Thank you QuickServee!",
     service: "Electrical Services",
   },
 ];
@@ -119,6 +119,6 @@ export const HOW_IT_WORKS = [
   {
     step: 3,
     title: "Get It Fixed",
-    description: "QuickServe connects you with a trusted, verified technician who arrives at your doorstep.",
+    description: "QuickServee connects you with a trusted, verified technician who arrives at your doorstep.",
   },
 ];

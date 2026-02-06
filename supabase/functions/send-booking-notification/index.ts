@@ -160,7 +160,7 @@ const handler = async (req: Request): Promise<Response> => {
         <div class="container">
           <div class="header">
             <h1 style="margin: 0;">🛠️ New Booking Request</h1>
-            <p style="margin: 10px 0 0 0;">QuickServe - Coimbatore</p>
+            <p style="margin: 10px 0 0 0;">QuickServee - Coimbatore</p>
           </div>
           <div class="content">
             <div class="field">
@@ -201,7 +201,7 @@ const handler = async (req: Request): Promise<Response> => {
             <a href="https://wa.me/91${safePhoneNumber}" class="cta" style="margin-left: 10px;">💬 WhatsApp</a>
           </div>
           <div class="footer">
-            <p>This is an automated notification from QuickServe booking system.</p>
+            <p>This is an automated notification from QuickServee booking system.</p>
           </div>
         </div>
       </body>
@@ -215,7 +215,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "QuickServe <onboarding@resend.dev>",
+        from: "QuickServee <onboarding@resend.dev>",
         to: [ADMIN_EMAIL],
         subject: `🔔 New Booking Request - ${safeService}`,
         html: emailHtml,
