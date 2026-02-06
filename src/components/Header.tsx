@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
 import { BUSINESS, PHONE_NUMBERS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
+import logo from "../assest/logo.png"
+import slogan from "../assest/slogan.png"
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,15 +41,25 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">Q</span>
-            </div>
-            <span className="font-display font-bold text-xl text-foreground">
-              {BUSINESS.name}
-            </span>
-          </a>
+
+
+      {/* Logo */}
+      <a href="/" className="flex items-center gap-2">
+        {/* Left Icon */}
+        <img
+          src={logo}
+          alt="QuickServee Icon"
+          className="w-16 h-16 sm:w-12 sm:h-12 object-contain"
+        />
+
+        {/* Right Text Logo */}
+        <img
+          src={slogan}
+          alt="QuickServee"
+          className="h-16 sm:h-18 object-contain"
+        />
+      </a>
+
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
