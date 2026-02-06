@@ -21,6 +21,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <FloatingCTAButtons />
     </div>
   );
 };
